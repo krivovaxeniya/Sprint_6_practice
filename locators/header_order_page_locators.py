@@ -12,3 +12,5 @@ class HeaderOrderPageLocators:
     main_header = By.XPATH, ".//div[contains(@class,'Home_Header')]"
     #Форма поиска на главной странице яндекса
     yandex_search = By.XPATH, ".//form[contains(@class, 'dzen-search-arrow-common')]"
+    #Кнопка "Заказать" в шапке
+    order_button = By.XPATH, ".//button[@class='Button_Button__ra12g']"

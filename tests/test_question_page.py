@@ -21,7 +21,7 @@ class TestClickOnQuestion:
                               (7, Data.answer_7)])
     def test_click_on_question_show_answer(self, driver, num, expected_result):
         question_page = QuestionPageSamokat(driver)
-        question_page.scroll_to_element(QuestionPageLocators.SEARCH_QUESTIONS_SECTION)
-        question_page.wait_clickable_element(QuestionPageLocators.SEARCH_QUESTION_LIST_SECT)
+        question_page.scroll_to_question_section()
+        question_page.wait_clickable_question()
         result = question_page.click_on_question_and_get_answer(QuestionPageLocators.SEARCH_QUESTION_LIST, QuestionPageLocators.SEARCH_ANSWER_LIST, num)
         assert result == expected_result

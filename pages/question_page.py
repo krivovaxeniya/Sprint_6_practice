@@ -1,4 +1,5 @@
 from pages.base_page import BasePage
+from locators.question_page_locators import QuestionPageLocators
 import allure
 
 
@@ -12,3 +13,9 @@ class QuestionPageSamokat(BasePage):
         locator_answ = locator_answ.format(num)
         self.click_on_element([method, locator_ques])
         return self.get_text_from_element([method, locator_answ])
+
+    def scroll_to_question_section(self):
+        self.scroll_to_element(QuestionPageLocators.SEARCH_QUESTIONS_SECTION)
+
+    def wait_clickable_question(self):
+        self.wait_clickable_element(QuestionPageLocators.SEARCH_QUESTION_LIST_SECT)

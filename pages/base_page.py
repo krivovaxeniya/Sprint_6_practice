@@ -35,3 +35,5 @@ class BasePage:
     def get_attribute_value_from_element(self, locator):
         return self.find_element(locator).get_attribute('data-params')
 
+    def switch_new_page(self):
+        self.driver.switch_to.window(self.driver.window_handles[1])

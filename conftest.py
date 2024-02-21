@@ -13,12 +13,3 @@ def driver():
     yield driver
     driver.quit()
 
-@pytest.fixture(scope='function')
-def main_page(driver):
-    try:
-        main_page = MainPageSamokat(driver)
-        main_page.wait_visibly_element(OrderButtonLocators.cookie_button)
-        main_page.click_on_element(OrderButtonLocators.cookie_button)
-        yield main_page
-    except:
-        pass

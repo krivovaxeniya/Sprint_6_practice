@@ -1,4 +1,3 @@
-from selenium.common import TimeoutException
 from locators.order_page_locators import OrderButtonLocators, OrderPageLocators
 from pages.base_page import BasePage
 import allure
@@ -6,15 +5,16 @@ import allure
 
 class MainPageSamokat(BasePage):
 
-    @allure.step('Выполняется проверка наличия элемента на странице и клик на элемент, в случае отсутствия элемента происходит скролл до него')
-    def click_on_element_or_scroll_to_element(self, locator):
-        try:
-            self.wait_visibly_element(locator)
-            self.click_on_element(locator)
-        except TimeoutException:
-            self.scroll_to_element(locator)
-            self.wait_clickable_element(locator)
-            self.click_on_element(locator)
+    @allure.step('Выполняется скролл до элемента и клик на него')
+    def scroll_to_element_and_click(self, locator):
+       self.scroll_to_element(locator)
+       self.wait_clickable_element(locator)
+       self.click_on_element(locator)
+
+    @allure.step('Выполняется клик-подтверждение на кнопку куки, чтобы строка не закрывала экран')
+    def click_on_cookie_button(self):
+        self.wait_visibly_element(OrderButtonLocators.cookie_button)
+        self.click_on_element(OrderButtonLocators.cookie_button)
 
 
 class OrderPageSamokat(BasePage):
@@ -80,3 +80,5 @@ class OrderPageSamokat(BasePage):
         self.wait_clickable_element(OrderPageLocators.order_confirmation_agree_button)
         self.click_on_element(OrderPageLocators.order_confirmation_agree_button)
 
+    def get_text_from_success_order_form(self):
+        return self.get_text_from_element(OrderPageLocators.success_order_section)
